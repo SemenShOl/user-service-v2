@@ -14,7 +14,7 @@ const groupRepository = {
     }
   },
 
-  async changeGroup(groupID, newTitle) {
+  async changeGroup(newTitle, groupID) {
     try {
       console.log("groupID: ", groupID);
       console.log("newTitle: ", newTitle);

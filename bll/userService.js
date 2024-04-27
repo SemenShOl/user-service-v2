@@ -5,6 +5,7 @@ const {
   v4: uuidv4,
 } = require('uuid');
 const authRepostitory = require("../repositories/userRepository");
+const groupRepository = require("../repositories/groupRepository");
 const userService = {
   async registration(password, login) {
     try {
@@ -47,7 +48,12 @@ const userService = {
 
   async updateGroupOrPassword(userID, group_id, newPassword) {
     const hashPass = await bcrypt.hash(newPassword, 3);
+    const group = await groupRepository.getGroupByID(group_id);
+    if(!group) {
+      return { status: 400, message: "Некорректная группа" };
+    }
     await authRepostitory.changeUser(userID, hashPass, group_id);
+    return { status: 200 };
   },
 };
 

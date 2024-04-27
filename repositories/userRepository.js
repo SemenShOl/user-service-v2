@@ -1,6 +1,5 @@
 const userService = require("../bll/userService");
 const db = require("../db");
-
 const userRepostitory = {
   async getUserByLogin(login) {
     try {
